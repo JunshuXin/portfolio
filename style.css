@@ -125,59 +125,58 @@ nav a.current {
 .projects {
     display: grid; /* Enable grid layout */
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); /* Responsive grid */
-    grid-auto-rows: minmax(auto, 1fr); 
-    gap: 1.5em; /* Spacing between grid items */
-    padding: 1em; /* Padding around the grid */
-    max-width: 1200px; /* Limit the grid width */
-    margin: 0 auto; /* Center the grid container */
+    grid-auto-rows: minmax(auto, 1fr); /* Uniform row heights */
+    gap: 2em; /* Spacing between grid items */
+    padding: 1em;
+    max-width: 1200px; /* Limit grid width */
+    margin: 0 auto; /* Center grid container */
 }
 
-/* Project Item Styling */
-.project {
-    display: grid; /* Enable grid inside project cards */
-    grid-template-rows: subgrid; /* Use subgrid for row alignment */
-    grid-row: span 3; /* Ensure each project spans 3 rows */
-    gap: 1em;
+/* Individual Project Cards */
+.projects article {
+    display: grid; /* Enable internal grid layout */
+    grid-template-rows: subgrid; /* Use subgrid for consistent row alignment */
+    grid-row: span 3; /* Each card spans 3 rows */
+    gap: 1em; /* Spacing between internal elements */
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 1em;
     background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.2s, box-shadow 0.2s; /* Add hover effect */
 }
 
-.project:hover {
-    transform: translateY(-5px); /* Slightly lift the card */
+.projects article:hover {
+    transform: translateY(-5px); /* Slightly lift card on hover */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
 }
 
-/* Align Images */
-.project img {
-    width: 100%; /* Ensure images fill their containers */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 5px; /* Match card styling */
-}
-
-/* Headings for Projects */
-.project h2 {
-    margin: 0; /* Remove excess spacing */
-    font-size: 1.5rem; /* Adjust heading size */
+/* Titles (Dynamic Height for Headings) */
+.projects h2 {
+    font-size: 1.5rem; /* Consistent heading size */
+    font-weight: bold;
     color: #007BFF; /* Accent color */
-    text-align: center; /* Center headings for better aesthetics */
+    text-align: center;
+    line-height: 1.2; /* Adjust spacing between lines */
+    margin: 0; /* Remove extra margins */
+    min-height: 3em; /* Set a minimum height to ensure alignment */
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .projects {
-        grid-template-columns: repeat(auto-fill, minmax(12em, 1fr)); /* Adjust for smaller screens */
-        gap: 1em; /* Smaller gaps for compact view */
-    }
+/* Images */
+.projects img {
+    display: block;
+    width: 100%; /* Ensure images fill their containers */
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Crop images while maintaining aspect ratio */
+    border-radius: 5px; /* Match card styling */
+    margin: 0 auto;
+}
 
-    .project {
-        padding: 0.5em; /* Reduce padding for smaller screens */
-    }
-
-    .project h2 {
-        font-size: 1.2rem; /* Slightly smaller heading size */
-    }
+/* Descriptions */
+.projects p {
+    font-size: 1rem; /* Readable font size */
+    color: #555; /* Subtle text color */
+    text-align: center;
+    margin: 0; /* Remove unnecessary margins */
+    line-height: 1.5; /* Improve readability */
 }
