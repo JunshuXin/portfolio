@@ -5,31 +5,42 @@ body {
 
     /* Limit content width for better readability */
     max-width: 100ch; /* Maximum width of content */
-    margin: 0 auto;   /* Center the content horizontally */
+    margin-inline: auto;   /* Center the content horizontally */
     padding: 1rem;    /* Add padding around the edges for breathing room */
     color: #333;      /* Use a neutral text color */
     background-color: #f9f9f9; /* Light background for better contrast */
 }
+:root {
+    --color-accent: oklch(65% 50% 0); /* Accent color */
+    --color-border: oklch(80% 3% 200); /* Cool gray for borders */
+}
 
 /* Style the navigation bar */
 nav {
-    margin-bottom: 1rem;
-    text-align: center;
-    background-color: #007BFF; /* Add a primary color for the nav background */
-    padding: 0.5rem 0;
+    display: flex; /* Enable Flexbox */
+    justify-content: space-between; /* Evenly space items */
+    background-color: var(--color-accent); /* Accent color for background */
+    padding: 0.5em; /* Add spacing */
+    border-bottom: 1px solid var(--color-border); /* Add bottom border */
+    margin-bottom: 1rem; /* Add spacing below */
 }
 
 nav a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: white; /* White text on the nav background */
-    font-weight: bold;
+    flex: 1; /* Make all links take up equal space */
+    text-decoration: none; /* Remove underline */
+    color: white; /* White text on accent color background */
+    text-align: center; /* Center text in its space */
+    padding: 0.5em; /* Add padding for better spacing */
+    font-weight: bold; /* Bold text for readability */
+    transition: border-bottom 0.2s ease-in-out; /* Smooth hover effect */
 }
 
 nav a:hover {
-    text-decoration: underline;
-}
-
+    border-bottom: 0.4em solid var(--color-accent);}
+nav a.current {
+        border-bottom: 0.4em solid var(--color-border); /* Distinguish the current page */
+        padding-bottom: 0.1em; /* Reduce padding to counter the border */
+    }
 /* Style headings */
 h1, h2, h3 {
     color: #333; /* Darker headings for emphasis */
@@ -56,4 +67,117 @@ footer {
     background-color: #007BFF; /* Match nav background */
     color: white;
     font-size: 0.9rem;
+}
+/* Style the form with CSS Grid */
+form {
+    display: grid !important; /* Enable Grid layout */
+    grid-template-columns: auto 1fr; /* Two columns: auto for labels, 1fr for inputs */
+    gap: 1em; /* Add spacing between grid items */
+    max-width: 600px; /* Limit form width */
+    margin: 2rem auto; /* Center the form horizontally */
+    padding: 1em;
+    border: 1px solid var(--color-border); /* Optional border for visibility */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #fff; /* Light background for better contrast */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Style labels */
+label {
+    display: block; /* Treat labels as block elements */
+    margin-block: 0.5em; /* Add spacing before and after */
+    font-weight: bold; /* Highlight labels */
+}
+
+/* Style inputs and textarea */
+input, textarea {
+    width: 100%; /* Take full width of their column */
+    padding: 0.5em; /* Add padding for better usability */
+    border: 1px solid var(--color-border); /* Border matching site theme */
+    border-radius: 4px; /* Slightly rounded corners */
+    box-sizing: border-box; /* Ensure padding is included in width */
+    font-size: 1rem; /* Consistent font size */
+}
+
+/* Style the submit button */
+button {
+    grid-column: 1 / -1; /* Span the full width of the grid */
+    padding: 0.75em;
+    background-color: var(--color-accent); /* Accent color for button */
+    color: white; /* White text for contrast */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Slightly rounded corners */
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Add hover effect to the button */
+button:hover {
+    background-color: #0056b3; /* Darker shade of the accent color */
+}
+
+/* Optional: Style the current navigation link */
+nav a.current {
+    border-bottom: 0.4em solid var(--color-border);
+    padding-bottom: 0.1em;
+}
+.projects {
+    display: grid; /* Enable grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); /* Responsive grid */
+    grid-auto-rows: minmax(auto, 1fr); 
+    gap: 1.5em; /* Spacing between grid items */
+    padding: 1em; /* Padding around the grid */
+    max-width: 1200px; /* Limit the grid width */
+    margin: 0 auto; /* Center the grid container */
+}
+
+/* Project Item Styling */
+.project {
+    display: grid; /* Enable grid inside project cards */
+    grid-template-rows: subgrid; /* Use subgrid for row alignment */
+    grid-row: span 3; /* Ensure each project spans 3 rows */
+    gap: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1em;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project:hover {
+    transform: translateY(-5px); /* Slightly lift the card */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+/* Align Images */
+.project img {
+    width: 100%; /* Ensure images fill their containers */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Match card styling */
+}
+
+/* Headings for Projects */
+.project h2 {
+    margin: 0; /* Remove excess spacing */
+    font-size: 1.5rem; /* Adjust heading size */
+    color: #007BFF; /* Accent color */
+    text-align: center; /* Center headings for better aesthetics */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .projects {
+        grid-template-columns: repeat(auto-fill, minmax(12em, 1fr)); /* Adjust for smaller screens */
+        gap: 1em; /* Smaller gaps for compact view */
+    }
+
+    .project {
+        padding: 0.5em; /* Reduce padding for smaller screens */
+    }
+
+    .project h2 {
+        font-size: 1.2rem; /* Slightly smaller heading size */
+    }
 }
