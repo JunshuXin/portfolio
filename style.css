@@ -1,7 +1,59 @@
+/* Base styles for the body */
 body {
-    /* Set line height to 1.5 times the font size
-         and use the OS’s UI font as the website font
-       */
+    /* Set font size to 100%, line height to 1.5x, and use system UI font */
     font: 100%/1.5 system-ui;
-  }
-  
+
+    /* Limit content width for better readability */
+    max-width: 100ch; /* Maximum width of content */
+    margin: 0 auto;   /* Center the content horizontally */
+    padding: 1rem;    /* Add padding around the edges for breathing room */
+    color: #333;      /* Use a neutral text color */
+    background-color: #f9f9f9; /* Light background for better contrast */
+}
+
+/* Style the navigation bar */
+nav {
+    margin-bottom: 1rem;
+    text-align: center;
+    background-color: #007BFF; /* Add a primary color for the nav background */
+    padding: 0.5rem 0;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: white; /* White text on the nav background */
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Style headings */
+h1, h2, h3 {
+    color: #333; /* Darker headings for emphasis */
+}
+
+/* Style images */
+img {
+    max-width: 300px; /* Limit image width to fit well within the layout */
+    height: auto;     /* Keep aspect ratio */
+    display: block;
+    margin: 1rem auto; /* Center the image and add spacing */
+}
+
+/* Style paragraphs */
+p {
+    margin-bottom: 1rem;
+}
+
+/* Style footer (if you have one) */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #007BFF; /* Match nav background */
+    color: white;
+    font-size: 0.9rem;
+}
