@@ -1,4 +1,4 @@
-/* Base styles for the body */
+Base styles for the body
 body {
     /* Set font size to 100%, line height to 1.5x, and use system UI font */
     font: 100%/1.5 system-ui;
@@ -9,10 +9,21 @@ body {
     padding: 1rem;    /* Add padding around the edges for breathing room */
     color: #333;      /* Use a neutral text color */
     background-color: #f9f9f9; /* Light background for better contrast */
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 :root {
     --color-accent: oklch(65% 50% 0); /* Accent color */
     --color-border: oklch(80% 3% 200); /* Cool gray for borders */
+    color-scheme: light dark;
+    --bg-color: #ffffff;
+    --text-color: #000000;
+}
+
+[style*="color-scheme: dark"] {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+
 }
 
 /* Style the navigation bar */
@@ -180,3 +191,26 @@ nav a.current {
     margin: 0; /* Remove unnecessary margins */
     line-height: 1.5; /* Improve readability */
 }
+
+nav {
+    --border-color: oklch(50% 10% 200 / 40%);
+    /* ... other styles and nested rules ... */
+  }
+  
+
+
+  .color-scheme {
+    position: absolute; /* Take it out of the normal document flow */
+    top: 1rem; /* Offset from the top */
+    right: 1rem; /* Offset from the right */
+    font-size: 80%; /* Reduce font size to make it less prominent */
+    font-family: inherit; /* Inherit font-family from the parent */
+  }
+
+  select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: inherit; /* Match the site's font */
+  }
+  
