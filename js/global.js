@@ -67,11 +67,17 @@ select.addEventListener('input', function (event) {
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch and display projects if on projects page
     if (document.querySelector(".projects")) {
-        fetch("projects.json") // Adjust path if necessary
+        fetch("projects.json") // Ensure the file path is correct
             .then(response => response.json())
             .then(data => {
                 const projectsContainer = document.querySelector(".projects");
                 projectsContainer.innerHTML = ""; // Clear existing content
+                
+                // Update the projects count in the <h1> tag
+                const projectTitle = document.querySelector(".projects-title");
+                if (projectTitle) {
+                    projectTitle.textContent = `Projects (${data.length})`;
+                }
 
                 data.forEach(project => {
                     const projectElement = document.createElement("article");
