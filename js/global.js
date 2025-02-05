@@ -21,7 +21,7 @@ const ARE_WE_HOME = document.documentElement.classList.contains('home');
 
 // Add links to the navigation menu
 for (let p of pages) {
-    let url = !ARE_WE_HOME && !p.url.startsWith('http') ? '../' + p.url : './' + p.url;
+    let url = !ARE_WE_HOME && !p.url.startsWith('http') ?  p.url : '../' + p.url;
     console.log(url)
     let title = p.title;
 
