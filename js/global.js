@@ -6,10 +6,10 @@ function $$(selector, context = document) {
 // Define pages for navigation
 let pages = [
     { url: '', title: 'Home' },
-    { url: 'projects/', title: 'Projects' },
-    { url: 'resume/', title: 'Resume' },
-    { url: 'contact/', title: 'Contact' },
-    { url: 'github/', title: 'GitHub' }
+    { url: 'portfolio/projects/', title: 'Projects' },
+    { url: 'portfolio/resume/', title: 'Resume' },
+    { url: 'portfolio/contact/', title: 'Contact' },
+    { url: 'portfolio/github/', title: 'GitHub' }
 ];
 
 // Create a <nav> element and prepend it to the body
