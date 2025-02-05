@@ -6,10 +6,10 @@ function $$(selector, context = document) {
 // Define pages for navigation
 let pages = [
     { url: '', title: 'Home' },
-    { url: 'portfolio/projects/', title: 'Projects' },
-    { url: 'portfolio/resume/', title: 'Resume' },
-    { url: 'portfolio/contact/', title: 'Contact' },
-    { url: 'portfolio/github/', title: 'GitHub' }
+    { url: 'projects/', title: 'Projects' },
+    { url: 'resume/', title: 'Resume' },
+    { url: 'contact/', title: 'Contact' },
+    { url: 'github/', title: 'GitHub' }
 ];
 
 // Create a <nav> element and prepend it to the body
@@ -21,22 +21,28 @@ const ARE_WE_HOME = document.documentElement.classList.contains('home');
 
 // Add links to the navigation menu
 for (let p of pages) {
-    let url = !ARE_WE_HOME && !p.url.startsWith('http') ? '../' + p.url :  p.url;
-    console.log(url)
+    let url = p.url
+    url = !ARE_WE_HOME && !p.url.startsWith('http') ? '../' + url :  url;
     let title = p.title;
 
     // Create link and add it to the nav
-    nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);
+    let a = document.createElement('a');
+    a.href= url
+    a.textContent = title;
+    nav.append(a)
+
+    // Automatically highlight the current page link
+    const navLinks = $$("nav a");
+    let currentLink = navLinks.find(
+        (a) => a.host === location.host && a.pathname === location.pathname
+    );
+    if (currentLink) {
+        currentLink.classList.add('current');
+    }
+
+
 }
 
-// Automatically highlight the current page link
-const navLinks = $$("nav a");
-let currentLink = navLinks.find(
-    (a) => a.host === location.host && a.pathname === location.pathname
-);
-if (currentLink) {
-    currentLink.classList.add('current');
-}
 
 // Add the theme switcher
 document.body.insertAdjacentHTML(
