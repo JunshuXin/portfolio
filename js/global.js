@@ -6,10 +6,10 @@ function $$(selector, context = document) {
 // Define pages for navigation
 let pages = [
     { url: '', title: 'Home' },
-    { url: '/projects/', title: 'Projects' },
-    { url: '/resume/', title: 'Resume' },
-    { url: '/contact/', title: 'Contact' },
-    { url: '/github/', title: 'GitHub' }
+    { url: 'projects/', title: 'Projects' },
+    { url: 'resume/', title: 'Resume' },
+    { url: 'contact/', title: 'Contact' },
+    { url: 'github/', title: 'GitHub' }
 ];
 
 // Create a <nav> element and prepend it to the body
@@ -22,6 +22,7 @@ const ARE_WE_HOME = document.documentElement.classList.contains('home');
 // Add links to the navigation menu
 for (let p of pages) {
     let url = !ARE_WE_HOME && !p.url.startsWith('http') ? '../' + p.url : p.url;
+    console.log(url)
     let title = p.title;
 
     // Create link and add it to the nav
@@ -67,7 +68,7 @@ select.addEventListener('input', function (event) {
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch and display projects if on projects page
     if (document.querySelector(".projects")) {
-        fetch("projects.json") // Ensure the file path is correct
+        fetch("../lib/projects.json") // Ensure the file path is correct
             .then(response => response.json())
             .then(data => {
                 const projectsContainer = document.querySelector(".projects");
