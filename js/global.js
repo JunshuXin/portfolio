@@ -22,7 +22,7 @@ const ARE_WE_HOME = document.documentElement.classList.contains('home');
 // Add links to the navigation menu
 for (let p of pages) {
     let url = p.url
-    url = !ARE_WE_HOME && !p.url.startsWith('http') ? '../' + url :  url;
+    url = !ARE_WE_HOME && !p.url.startsWith('http') ? url : '../' +  url;
     let title = p.title;
 
     // Create link and add it to the nav
