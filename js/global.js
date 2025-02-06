@@ -1,3 +1,4 @@
+console.log('It is Alive!');
 
 function $$(selector, context = document) {
     return Array.from(context.querySelectorAll(selector));
@@ -17,18 +18,35 @@ let nav = document.createElement('nav');
 document.body.prepend(nav);
 
 // Check if we are on the home page
-const ARE_WE_HOME = document.documentElement.classList.contains('home');
+const ARE_WE_HOME = document.documentElement.classList.contains('home') || location.pathname === '/';
 
 // Add links to the navigation menu
 for (let p of pages) {
-    let url = !ARE_WE_HOME && !p.url.startsWith('http') ? '../' +  p.url :  p.url;
-    console.log(url)
+    let url = p.url;
     let title = p.title;
-
-    // Create link and add it to the nav
-    nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);
-}
-
+  
+    // Adjust the URL if not on the home page and the URL is not absolute
+    url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
+  
+    // Create a new <a> element
+    let a = document.createElement('a');
+    a.href = url;
+    a.textContent = title;
+  
+    // Highlight the current page
+    a.classList.toggle(
+      'current',
+      a.host === location.host && a.pathname === location.pathname
+    );
+  
+    // Open external links in a new tab
+    if (url.startsWith('http')) {
+      a.target = '_blank'; // Use explicit check for absolute URLs
+    }
+  
+    // Append the link to the <nav>
+    nav.append(a);
+  }
 // Automatically highlight the current page link
 const navLinks = $$("nav a");
 let currentLink = navLinks.find(
