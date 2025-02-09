@@ -13,8 +13,27 @@ let pages = [
 ];
 
 
+let navContainer = document.createElement('div');
+navContainer.classList.add('nav-container');
+
 let nav = document.createElement('nav');
-document.body.prepend(nav);
+navContainer.appendChild(nav);
+
+let themeLabel = document.createElement('label');
+themeLabel.classList.add('color-scheme');
+themeLabel.innerHTML = `
+  Theme:
+  <select id="theme-switch">
+    <option value="light dark" selected>Automatic</option>
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+  </select>
+`;
+navContainer.appendChild(themeLabel);
+
+// Add the navContainer to the document
+document.body.prepend(navContainer);
+
 
 const ARE_WE_HOME = document.documentElement.classList.contains('home') || location.pathname === '/';
 

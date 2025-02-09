@@ -200,6 +200,9 @@ nav {
 
 
   .color-scheme {
+    margin-left: auto; /* Pushes the theme selector to the right */
+    padding-left: 20px; /* Adds spacing */
+    white-space: nowrap; /* Prevents text wrapping */
     position: absolute; /* Take it out of the normal document flow */
     top: 1rem; /* Offset from the top */
     right: 1rem; /* Offset from the right */
@@ -213,4 +216,30 @@ nav {
     border: 1px solid #ccc;
     font-family: inherit; /* Match the site's font */
   }
+  #theme-switch {
+    position: relative;
+    right: 0;
+    margin-left: 10px; /* Space from the nav links */
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d64c74; /* Match your navbar background */
+    padding: 10px 20px;
+  }
+  
+  nav a {
+    margin-right: 15px; /* Space between links */
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .color-scheme {
+    margin-left: auto;
+    white-space: nowrap; /* Prevents text wrapping */
+  }
+  
   
