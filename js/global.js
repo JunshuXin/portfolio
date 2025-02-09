@@ -5,12 +5,13 @@ function $$(selector, context = document) {
 }
 
 let pages = [
-  { url: '', title: 'Home' },
-  { url: '../projects/index.html', title: 'Projects' },
-  { url: '../contact/index.html', title: 'Contact' },
-  { url: '../resume/index.html', title: 'Resume' },
+  { url: '/portfolio/', title: 'Home' },
+  { url: '/portfolio/projects/index.html', title: 'Projects' },
+  { url: '/portfolio/contact/index.html', title: 'Contact' },
+  { url: '/portfolio/resume/index.html', title: 'Resume' },
   { url: 'https://github.com/JunshuXin', title: 'Profile' },
 ];
+
 
 let nav = document.createElement('nav');
 document.body.prepend(nav);
@@ -22,8 +23,9 @@ for (let p of pages) {
   let title = p.title;
 
   // Adjust the URL if not on the home page and the URL is not absolute
-  url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
-
+  url = !url.startsWith('http') 
+  ? '/portfolio/' + url.replace(/^\/?portfolio\/?/, '') // Ensures single /portfolio/
+  : url;
   // Create a new <a> element
   let a = document.createElement('a');
   a.href = url;
