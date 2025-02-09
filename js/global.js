@@ -23,9 +23,10 @@ for (let p of pages) {
   let title = p.title;
 
   // Adjust the URL if not on the home page and the URL is not absolute
-  url = !url.startsWith('http') 
-  ? '/portfolio/' + url.replace(/^\/?portfolio\/?/, '') // Ensures single /portfolio/
-  : url;
+  url = url.startsWith('http') 
+  ? url 
+  : new URL('/portfolio' + url.replace(/^\/portfolio/, ''), window.location.origin).pathname;
+
   // Create a new <a> element
   let a = document.createElement('a');
   a.href = url;
@@ -119,16 +120,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   navLinks.forEach(link => {
     link.addEventListener('click', (event) => {
-      const target = link.getAttribute('href');
+      let target = link.getAttribute('href');
+      let absoluteTarget = new URL(target, window.location.origin).pathname;
 
       // Allow external links to open in a new tab
       if (link.target === '_blank') {
-        return;  // Skip preventing the default behavior for external links
+        return;
       }
 
-      // For internal links, prevent default and navigate normally
+      // Prevent navigation if already on the same page
+      if (window.location.pathname === absoluteTarget) {
+        event.preventDefault();
+        return;
+      }
+
+      // Ensure portfolio is in the path
+      if (!absoluteTarget.startsWith('/portfolio')) {
+        absoluteTarget = '/portfolio' + absoluteTarget;
+      }
+
+      // Prevent duplicate portfolio/project/project error
+      absoluteTarget = absoluteTarget.replace(/\/portfolio\/portfolio\//, '/portfolio/');
+
       event.preventDefault();
-      window.location.href = target;
+      window.location.href = absoluteTarget;
     });
   });
 });
