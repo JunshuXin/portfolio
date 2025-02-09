@@ -37,9 +37,14 @@ function getProjectData(projectsList) {
 // ✅ Function to Filter Projects Based on Search + Year Selection
 function filterProjects() {
     let filteredProjects = projects.filter((project) => {
-        let matchesSearchQuery = Object.values(project).join('\n').toLowerCase().includes(currentSearchQuery);
-        let matchesSelectedYear = currentSelectedYear ? project.year === currentSelectedYear : true;
-        return matchesSearchQuery && matchesSelectedYear;
+        let matchesSearchQuery = Object.values(project)
+    .join('\n')
+    .toLowerCase()
+    .includes(currentSearchQuery);
+
+let matchesSelectedYear = currentSelectedYear === null || project.year === currentSelectedYear;
+
+return matchesSearchQuery && matchesSelectedYear;
     });
 
     renderProjects(filteredProjects, projectsContainer, 'h2');
@@ -70,16 +75,18 @@ function renderPieChart(projectsList) {
 
     // ✅ Append Pie Chart Slices with Click Events
     g.selectAll("path")
-        .data(arcData)
-        .enter()
-        .append("path")
-        .attr("d", arcGenerator)
-        .attr("fill", (d, i) => colors(i))
-        .attr("data-year", d => d.data.label) // ✅ Set data attribute for filtering
-        .on("click", function (_, d) {
-            currentSelectedYear = currentSelectedYear === d.data.label ? null : d.data.label; // ✅ Toggle selection
-            filterProjects(); // ✅ Apply updated filter logic
-        });
+    .data(arcData)
+    .enter()
+    .append("path")
+    .attr("d", arcGenerator)
+    .attr("fill", (d, i) => colors(i))
+    .attr("data-year", d => d.data.label) // ✅ Set data attribute for filtering
+    .classed("selected", d => d.data.label === currentSelectedYear) // ✅ Keep selected slice highlighted
+    .on("click", function (_, d) {
+        currentSelectedYear = currentSelectedYear === d.data.label ? null : d.data.label; // ✅ Toggle selection
+        filterProjects(); // ✅ Apply updated filter logic
+    });
+
 
     updateLegend(data, colors);
 }
@@ -95,9 +102,12 @@ function updateLegend(data, colors) {
             .attr('class', currentSelectedYear === d.label ? "selected" : "")
             .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`)
             .on("click", function () {
-                currentSelectedYear = currentSelectedYear === d.label ? null : d.label; // ✅ Toggle selection
-                filterProjects(); // ✅ Apply updated filter logic
+                currentSelectedYear = currentSelectedYear === d.label ? null : d.label;
+                d3.selectAll(".legend li").classed("selected", false);
+                d3.select(this).classed("selected", true);
+                filterProjects();
             });
+            
     });
 }
 
