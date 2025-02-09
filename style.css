@@ -242,4 +242,11 @@ nav {
     white-space: nowrap; /* Prevents text wrapping */
   }
   
+  .project-year {
+    font-family: Baskerville, serif;  /* Use elegant serif font */
+    font-variant-numeric: oldstyle-nums;
+    font-style: italic;
+    color: #666;
+    margin-top: 5px;
+  }
   

@@ -5,10 +5,10 @@ function $$(selector, context = document) {
 }
 
 let pages = [
-  { url: '/portfolio/', title: 'Home' },
-  { url: '/portfolio/projects/index.html', title: 'Projects' },
-  { url: '/portfolio/contact/index.html', title: 'Contact' },
-  { url: '/portfolio/resume/index.html', title: 'Resume' },
+  { url: '', title: 'Home' },
+  { url: '/projects/index.html', title: 'Projects' },
+  { url: '/contact/index.html', title: 'Contact' },
+  { url: '/resume/index.html', title: 'Resume' },
   { url: 'https://github.com/JunshuXin', title: 'Profile' },
 ];
 
@@ -122,6 +122,7 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
       <img src="${project.image}" alt="${project.title}">
       <p>${project.description}</p>
       ${project.link ? `<a href="${project.link}" target="_blank" class="project-link">View Project</a>` : ''}
+      ${project.year ? `<p class="project-year">c. ${project.year}</p>` : ''} <!-- Add year -->
     `;
     containerElement.appendChild(article);
   });
