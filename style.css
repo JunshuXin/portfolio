@@ -249,4 +249,10 @@ nav {
     color: #666;
     margin-top: 5px;
   }
+  #projects-pie-plot {
+    max-width: 20em;
+    margin-block: 2em;
+  
+    overflow: visible;
+  }
   

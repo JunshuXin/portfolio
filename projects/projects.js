@@ -59,6 +59,10 @@ function renderPieChart(projectsList) {
     const arcGenerator = d3.arc()
         .innerRadius(0)
         .outerRadius(50);
+    let arc = arcGenerator({
+            startAngle: 0,
+            endAngle: 2 * Math.PI,
+          });
 
     const colors = d3.scaleOrdinal(d3.schemeTableau10);
 
