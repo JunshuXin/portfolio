@@ -44,7 +44,7 @@ for (let p of pages) {
   // Adjust the URL if not on the home page and the URL is not absolute
   url = url.startsWith('http') 
   ? url 
-  : new URL('/portfolio' + url.replace(/^\/portfolio/, ''), window.location.origin).pathname;
+  : new URL(url, window.location.origin).pathname;
 
   // Create a new <a> element
   let a = document.createElement('a');
