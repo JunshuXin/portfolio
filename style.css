@@ -241,6 +241,13 @@ nav {
     margin-left: auto;
     white-space: nowrap; /* Prevents text wrapping */
   }
+  .project-info {
+    display: flex;
+    flex-direction: column; /* Stack description and year vertically */
+    gap: 0.5em; /* Add spacing between description and year */
+    text-align: center; /* Center-align text */
+    padding: 0.5em; /* Add spacing inside the container */
+  }
   
   .project-year {
     font-family: Baskerville, serif;  /* Use elegant serif font */
@@ -250,9 +257,12 @@ nav {
     margin-top: 5px;
   }
   #projects-pie-plot {
+    width: 200px;  /* Explicit width */
+    height: 200px; /* Explicit height */
     max-width: 20em;
-    margin-block: 2em;
-  
-    overflow: visible;
-  }
+    max-height: 20em;
+    margin: auto; /* Center the chart */
+    display: block; /* Ensure block-level formatting */
+    overflow: hidden; /* Hide excess if necessary */
+}
   
