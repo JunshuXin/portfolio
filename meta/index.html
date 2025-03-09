@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script type="module" src="../global.js"></script>
+    <script defer src="main.js"></script>
+</head>
+<body>
+    <main>
+        <h1>Meta</h1>
+        <p>This page contains various statistics and meta information about our codebase.</p>
+
+        <!-- ✅ Summary Stats Section -->
+        <section id="stats-container">
+            <h2>Summary</h2>
+            <div id="stats"></div>
+        </section>
+
+        <!-- ✅ Scatterplot Section -->
+        <section id="chart-container">
+            <h2>Commits by Time of Day</h2>
+            <div id="chart"></div>
+
+            <!-- ✅ Brushing Selection Count -->
+            <p id="selection-count">No commits selected</p>
+
+            <!-- ✅ Language Breakdown -->
+            <dl id="language-breakdown" class="stats"></dl>
+        </section>
+        <!-- ✅ Add slider for commit filtering -->
+        <section id="commit-slider-container">
+            <h2>Filter Commits</h2>
+            <label for="commitSlider">
+                Show commits until: <time id="commitTime"></time>
+            </label>
+            <input type="range" id="commitSlider" min="0" max="100" value="100">
+        </section>
+        <div id="scrollytelling">
+            <div id="scroll-container">
+                <div id="spacer"></div>
+                <div id="items-container"></div>
+            </div>
+            <div id="chart"></div> <!-- Existing scatterplot -->
+        </div>
+
+        <div id="file-scrollytelling">
+            <div id="file-scroll-container">
+                <div id="file-spacer"></div>
+                <div id="file-items-container"></div>
+            </div>
+            <div id="file-visualization"></div>
+        </div>
+        
+        
+
+
+        <!-- ✅ Tooltip for Hovering on Dots -->
+        <dl id="commit-tooltip" class="info tooltip" hidden>
+            <dt>Commit</dt>
+            <dd><a href="" id="commit-link" target="_blank"></a></dd>
+            <dt>Date</dt>
+            <dd id="commit-date"></dd>
+        </dl>
+    </main>
+</body>
+</html>
